@@ -574,34 +574,15 @@ public class PlayerManager : MonoBehaviour
 	#region Collision
 	private void OnCollisionEnter(Collision collision)
 	{
+		Debug.Log(collision.collider.tag);
+
+
 		if (collision.collider.CompareTag("Ground"))
 		{
 			Debug.Log("着地");
 			ContactPoint contact = collision.contacts[0];
 			AlignToGround(contact.normal);
 			EnterLanding();
-		}
-
-		// Item.
-		if (collision.collider.CompareTag("Branches"))
-		{
-			branches.current++; // 加算.
-			Debug.Log("Get:木枝");
-		}
-		if (collision.collider.CompareTag("Hangar"))
-		{
-			hangar.current++;   // 加算.
-			Debug.Log("Get:ハンガー");
-		}
-		if (collision.collider.CompareTag("Cotton"))
-		{
-			cotton.current++;   //加算.
-			Debug.Log("Get:綿");
-		}
-		if (collision.collider.CompareTag("SmollStone"))
-		{
-			isStone = true; // 石を持ってる状態にする.
-			Debug.Log("Get:石");
 		}
 
 	}
@@ -622,4 +603,39 @@ public class PlayerManager : MonoBehaviour
 
 	}
 	#endregion
+
+	#region Trigger
+	private void OnTriggerEnter(Collider other)
+	{
+		Debug.Log(other.tag);
+
+		// Item
+		if (other.CompareTag("Branches"))
+		{
+			branches.current++;
+			Debug.Log("Get:木枝");
+			Destroy(other.gameObject);
+		}
+		else if (other.CompareTag("Hangar"))
+		{
+			hangar.current++;
+			Debug.Log("Get:ハンガー");
+			Destroy(other.gameObject);
+		}
+		else if (other.CompareTag("Cotton"))
+		{
+			cotton.current++;
+			Debug.Log("Get:綿");
+			Destroy(other.gameObject);
+		}
+		else if (other.CompareTag("SmollStone"))
+		{
+			isStone = true;
+			Debug.Log("Get:石");
+			Destroy(other.gameObject);
+		}
+	}
+	#endregion
+
+
 }

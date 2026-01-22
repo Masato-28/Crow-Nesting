@@ -94,10 +94,9 @@ GameObject:
   - component: {fileID: 8073763410829920757}
   - component: {fileID: 1473118166144061762}
   - component: {fileID: 7150790912426513409}
-  - component: {fileID: 6784168309292565669}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Branches
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,29 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6784168309292565669
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3162378114731275261}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5170432372696833295
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +262,7 @@ GameObject:
   - component: {fileID: -9140174086383875331}
   m_Layer: 0
   m_Name: Branches
-  m_TagString: Untagged
+  m_TagString: Branches
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,6 +318,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2975e399960abf141b36d23800464ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  showDistance: 3
-  glowObject: {fileID: 0}

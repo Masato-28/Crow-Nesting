@@ -15,7 +15,17 @@ public class GameManager : MonoBehaviour
 	[Header("Input Actions")]
 	[SerializeField] private InputActionReference escAction;
 
+	[SerializeField] private Light light;
+
 	//[SerializeField] public ItemType itemType;
+
+	private void Awake()
+	{
+		if (light != null)
+		{
+			light.color = Color.white;
+		}
+	}
 
 	private void OnEnable()
 	{

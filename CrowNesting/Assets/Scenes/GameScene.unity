@@ -1207,7 +1207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
@@ -7862,7 +7862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
@@ -34501,7 +34501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
@@ -45068,6 +45068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escAction: {fileID: 4026745704570073386, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  light: {fileID: 304641698}
 --- !u!1001 &1701528052
 PrefabInstance:
   m_ObjectHideFlags: 0
