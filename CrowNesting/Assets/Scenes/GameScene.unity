@@ -1205,6 +1205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird1
       objectReference: {fileID: 0}
+    - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
     m_RemovedGameObjects: []
@@ -7855,6 +7859,10 @@ PrefabInstance:
     - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
       propertyPath: m_Name
       value: Bird3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
@@ -33417,9 +33425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2975e399960abf141b36d23800464ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3677929056831437107}
-  showDistance: 6
-  glowObject: {fileID: 4779578621881929387}
 --- !u!1001 &1278806693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34493,6 +34498,10 @@ PrefabInstance:
     - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
       propertyPath: m_Name
       value: Bird2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269608564055437708, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7159324555455406245, guid: 53c7f78f8f435384ebd2033339c447b4, type: 3}
@@ -74836,9 +74845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2975e399960abf141b36d23800464ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3677929056831437107}
-  showDistance: 3
-  glowObject: {fileID: 0}
 --- !u!65 &4570449064453116794
 BoxCollider:
   m_ObjectHideFlags: 0
