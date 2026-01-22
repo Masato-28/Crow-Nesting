@@ -462,9 +462,9 @@ public class PlayerManager : MonoBehaviour
 		SetPoint();
 
 		// ===== アイテム数表示 =====
-		BranchesText.text = $"{branches.current} / {branches.required}";
-		HangerText.text = $"{hangar.current} / {hangar.required}";
-		CottonText.text = $"{cotton.current} / {cotton.required}";
+		BranchesText.text = $"{branches.current}"/* / {branches.required}"*/;
+		HangerText.text = $"{hangar.current}"/* / {hangar.required}"*/;
+		CottonText.text = $"{cotton.current}"/*/ {cotton.required}"*/;
 	}
 
 
