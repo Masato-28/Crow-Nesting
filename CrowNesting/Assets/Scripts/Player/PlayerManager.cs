@@ -89,6 +89,7 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private float miniGameInputLockTime = 2f;
 	private bool isInputLocked = false;
 
+	[SerializeField] private bool isgame;
 
 	#endregion
 
@@ -158,6 +159,11 @@ public class PlayerManager : MonoBehaviour
 
 		// UIの更新.
 		UpdateUI();
+
+		if (isgame)
+		{
+			MiniGameStart();
+		}
 	}
 
 	void FixedUpdate()
