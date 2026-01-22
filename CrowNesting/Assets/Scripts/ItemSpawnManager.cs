@@ -55,6 +55,7 @@ public class ItemSpawnManager : MonoBehaviour
 			{
 				points[i].active = true;
 				points[i].Spawn(setting.itemPrefab);
+				
 			}
 		}
 	}

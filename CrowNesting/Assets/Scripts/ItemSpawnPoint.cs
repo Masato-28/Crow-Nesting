@@ -7,13 +7,29 @@ public class ItemSpawnPoint : MonoBehaviour
 	[HideInInspector] public bool active = false;
 	[HideInInspector] public bool used = false;
 
-	public void Spawn(GameObject prefab)
+	/*public void Spawn(GameObject prefab)
 	{
 		if (!active || used) return;
 
 		Instantiate(prefab, transform.position, Quaternion.identity);
 		used = true;
+	}*/
+
+	public void Spawn(GameObject prefab)
+	{
+		if (!active || used) return;
+
+		GameObject spawned = Instantiate(
+			prefab,
+			transform.position,
+			Quaternion.identity
+		);
+
+		Debug.Log($"Spawned : {spawned.name} (Point:{name}, Type:{itemType})");
+
+		used = true;
 	}
+
 }
 
 public enum ItemType

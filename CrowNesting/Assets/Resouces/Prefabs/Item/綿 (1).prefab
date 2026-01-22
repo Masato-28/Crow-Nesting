@@ -68,9 +68,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2975e399960abf141b36d23800464ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  showDistance: 3
-  glowObject: {fileID: 4426187380236231166}
 --- !u!1 &3866122567910498151
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +212,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a1b8182e609c684e939cebcc31069a2, type: 2}
+  - {fileID: 2100000, guid: 8cb43fe853814f447ad49d71513957f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
