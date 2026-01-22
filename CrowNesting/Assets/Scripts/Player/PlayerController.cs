@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
 	public Vector2 MoveInput { get; private set; }
 	public bool Ascend { get; private set; }
 	public bool Descend { get; private set; }
-	public bool DropStone { get; private set; }
+	public bool DropItem { get; private set; }
 
 	private InputSystem_Actions.GameplayActions gameplay;
 
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 		MoveInput = gameplay.Move.ReadValue<Vector2>();
 		Ascend = gameplay.Ascend.IsPressed();
 		Descend = gameplay.Descend.IsPressed();
-		DropStone = gameplay.DropStone.IsPressed();
+		DropItem = gameplay.DropItem.IsPressed();
 
 	}
 }

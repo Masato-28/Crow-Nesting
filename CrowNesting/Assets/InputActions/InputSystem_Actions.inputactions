@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DropStone",
+                    "name": "DropItem",
                     "type": "Button",
                     "id": "c09a49d0-c121-4815-8947-e14ae9f26215",
                     "expectedControlType": "Button",
@@ -117,6 +117,15 @@
                     "name": "Esc",
                     "type": "Button",
                     "id": "e155b81a-7be9-4cd2-8b67-b83c349b1a45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CameraRotata",
+                    "type": "Button",
+                    "id": "10553ed1-ae78-49a6-831e-6ea1bb9ec5e2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -567,7 +576,7 @@
                 {
                     "name": "",
                     "id": "a73ac78b-c7ab-4b1b-83ca-1059b22e8518",
-                    "path": "<Keyboard>/m",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -582,7 +591,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "DropStone",
+                    "action": "DropItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -593,7 +602,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "DropStone",
+                    "action": "DropItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -605,6 +614,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d95e902-2fc9-4e82-9d68-556886f59b5a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraRotata",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

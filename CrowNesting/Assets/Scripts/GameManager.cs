@@ -1,10 +1,21 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/*public enum ItemType
+{
+	Branch,
+	Stone,
+	Fruit,
+	Feather,
+	Rare
+}*/
+
 public class GameManager : MonoBehaviour
 {
 	[Header("Input Actions")]
 	[SerializeField] private InputActionReference escAction;
+
+	//[SerializeField] public ItemType itemType;
 
 	private void OnEnable()
 	{

@@ -1,0 +1,18 @@
+using UnityEngine;
+
+public class GoalPoint : MonoBehaviour
+{
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!other.CompareTag("Player")) return;
+
+		if (MiniGameManager.Instance.CanGoal())
+		{
+			MiniGameManager.Instance.Goal();
+		}
+		else
+		{
+			Debug.Log("‚Ü‚¾ƒŠƒ“ƒO‚ª‘«‚è‚È‚¢I");
+		}
+	}
+}

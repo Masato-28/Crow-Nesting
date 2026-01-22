@@ -127,7 +127,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DropStone"",
+                    ""name"": ""DropItem"",
                     ""type"": ""Button"",
                     ""id"": ""c09a49d0-c121-4815-8947-e14ae9f26215"",
                     ""expectedControlType"": ""Button"",
@@ -139,6 +139,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Esc"",
                     ""type"": ""Button"",
                     ""id"": ""e155b81a-7be9-4cd2-8b67-b83c349b1a45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CameraRotata"",
+                    ""type"": ""Button"",
+                    ""id"": ""10553ed1-ae78-49a6-831e-6ea1bb9ec5e2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -589,7 +598,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a73ac78b-c7ab-4b1b-83ca-1059b22e8518"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -604,7 +613,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""DropStone"",
+                    ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -615,7 +624,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""DropStone"",
+                    ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -627,6 +636,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d95e902-2fc9-4e82-9d68-556886f59b5a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraRotata"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1225,8 +1245,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Gameplay_Descend = m_Gameplay.FindAction("Descend", throwIfNotFound: true);
         m_Gameplay_CameraHold = m_Gameplay.FindAction("CameraHold", throwIfNotFound: true);
         m_Gameplay_Map = m_Gameplay.FindAction("Map", throwIfNotFound: true);
-        m_Gameplay_DropStone = m_Gameplay.FindAction("DropStone", throwIfNotFound: true);
+        m_Gameplay_DropItem = m_Gameplay.FindAction("DropItem", throwIfNotFound: true);
         m_Gameplay_Esc = m_Gameplay.FindAction("Esc", throwIfNotFound: true);
+        m_Gameplay_CameraRotata = m_Gameplay.FindAction("CameraRotata", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1311,8 +1332,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Descend;
     private readonly InputAction m_Gameplay_CameraHold;
     private readonly InputAction m_Gameplay_Map;
-    private readonly InputAction m_Gameplay_DropStone;
+    private readonly InputAction m_Gameplay_DropItem;
     private readonly InputAction m_Gameplay_Esc;
+    private readonly InputAction m_Gameplay_CameraRotata;
     public struct GameplayActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1328,8 +1350,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Descend => m_Wrapper.m_Gameplay_Descend;
         public InputAction @CameraHold => m_Wrapper.m_Gameplay_CameraHold;
         public InputAction @Map => m_Wrapper.m_Gameplay_Map;
-        public InputAction @DropStone => m_Wrapper.m_Gameplay_DropStone;
+        public InputAction @DropItem => m_Wrapper.m_Gameplay_DropItem;
         public InputAction @Esc => m_Wrapper.m_Gameplay_Esc;
+        public InputAction @CameraRotata => m_Wrapper.m_Gameplay_CameraRotata;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1372,12 +1395,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Map.started += instance.OnMap;
             @Map.performed += instance.OnMap;
             @Map.canceled += instance.OnMap;
-            @DropStone.started += instance.OnDropStone;
-            @DropStone.performed += instance.OnDropStone;
-            @DropStone.canceled += instance.OnDropStone;
+            @DropItem.started += instance.OnDropItem;
+            @DropItem.performed += instance.OnDropItem;
+            @DropItem.canceled += instance.OnDropItem;
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
+            @CameraRotata.started += instance.OnCameraRotata;
+            @CameraRotata.performed += instance.OnCameraRotata;
+            @CameraRotata.canceled += instance.OnCameraRotata;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1415,12 +1441,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Map.started -= instance.OnMap;
             @Map.performed -= instance.OnMap;
             @Map.canceled -= instance.OnMap;
-            @DropStone.started -= instance.OnDropStone;
-            @DropStone.performed -= instance.OnDropStone;
-            @DropStone.canceled -= instance.OnDropStone;
+            @DropItem.started -= instance.OnDropItem;
+            @DropItem.performed -= instance.OnDropItem;
+            @DropItem.canceled -= instance.OnDropItem;
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
+            @CameraRotata.started -= instance.OnCameraRotata;
+            @CameraRotata.performed -= instance.OnCameraRotata;
+            @CameraRotata.canceled -= instance.OnCameraRotata;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1614,8 +1643,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnDescend(InputAction.CallbackContext context);
         void OnCameraHold(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
-        void OnDropStone(InputAction.CallbackContext context);
+        void OnDropItem(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
+        void OnCameraRotata(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
