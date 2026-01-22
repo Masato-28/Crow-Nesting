@@ -44492,7 +44492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728be9ee294d0b74aa5bca9d05ed1754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalRingCount: 77
+  totalRingCount: 7
 --- !u!4 &1670160822
 Transform:
   m_ObjectHideFlags: 0
