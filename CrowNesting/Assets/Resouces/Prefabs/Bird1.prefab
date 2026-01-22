@@ -392,20 +392,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8269608564055437708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc72947b2ffda324d8a35a1179dfc900, type: 3}
+  m_Script: {fileID: 11500000, guid: f63a87353fd4ef744bf406facdabc164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolPoints: []
   player: {fileID: 0}
   viewDistance: 8
   viewAngle: 60
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0
+  playerManager: {fileID: 0}
 --- !u!1 &8463112534065506038
 GameObject:
   m_ObjectHideFlags: 0

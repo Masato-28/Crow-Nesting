@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 using static UnityEngine.UI.Image;
 
 #region 列挙型変数
@@ -67,7 +65,12 @@ public class PlayerManager : MonoBehaviour
 	[Header("UI")]
 	[SerializeField] private GameObject IconStone;
 	[SerializeField] private GameObject IconBorn;
-	[SerializeField] private GameObject PlayerPoint;
+
+	[SerializeField] private Text HangerText;
+	[SerializeField] private Text BranchesText;
+	[SerializeField] private Text CottonText;
+
+	[SerializeField] private GameObject PlayerMiniMapPoint;
 
 
 	[Header("DebugLog")]
@@ -450,17 +453,20 @@ public class PlayerManager : MonoBehaviour
 	/// </summary>
 	private void UpdateUI()
 	{
-		// 安全のため、範囲外はクランプ
+		// 残機UI
 		int index = Mathf.Clamp(correntLife, 0, LifeSprite.Length - 1);
-
-		// UI画像を差し替え
 		ImageLife.sprite = LifeSprite[index];
 
 		SetStoneIcon();
 		SetBornIcon();
 		SetPoint();
 
+		// ===== アイテム数表示 =====
+		BranchesText.text = $"{branches.current} / {branches.required}";
+		HangerText.text = $"{hangar.current} / {hangar.required}";
+		CottonText.text = $"{cotton.current} / {cotton.required}";
 	}
+
 
 	private void DropStone()
 	{
@@ -544,7 +550,7 @@ public class PlayerManager : MonoBehaviour
 
 	private void SetPoint()
 	{
-		PlayerPoint.transform.position = transform.position;
+		PlayerMiniMapPoint.transform.position = transform.position;
 	}
 
 	public void MiniGameStart()
