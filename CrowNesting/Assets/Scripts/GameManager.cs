@@ -1,14 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-/*public enum ItemType
-{
-	Branch,
-	Stone,
-	Fruit,
-	Feather,
-	Rare
-}*/
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +9,10 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private Light light;
 
-	//[SerializeField] public ItemType itemType;
+		
+
+
+	private bool isGameClear;
 
 	private void Awake()
 	{
@@ -37,6 +32,21 @@ public class GameManager : MonoBehaviour
 	{
 		escAction.action.performed -= OnEsc;
 		escAction.action.Disable();
+	}
+
+
+
+
+
+	public void GameClear()
+	{
+		isGameClear = true;
+		Debug.Log("GM:Clear");
+	}
+
+	public void Clear()
+	{
+		SceneManager.LoadScene("ClearScene");
 	}
 
 	// Esc‚ª‰Ÿ‚³‚ê‚½Žž

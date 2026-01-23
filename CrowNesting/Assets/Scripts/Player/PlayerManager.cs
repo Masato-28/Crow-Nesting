@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 using static UnityEngine.UI.Image;
@@ -39,6 +40,9 @@ public class PlayerManager : MonoBehaviour
 	private Animator anim;
 	private Vector2 moveInput;  // 移動の入力値.
 	private MoveType lastMoveType;
+	private bool turnLeft;
+	private bool turnRight;
+
 
 	[SerializeField] private MoveType moveType = MoveType.Physics;          // 挙動管理.
 	[SerializeField] private BirdState birdState;                           // 行動状態.
@@ -79,7 +83,7 @@ public class PlayerManager : MonoBehaviour
 
 
 	private bool ascend;        // 上昇入力.
-	private bool descend;       // 下降入力.
+	private bool descend;       // 下降入力.F
 	private bool dropItem;     // 石を落とす.
 
 	[Header("Item")]
@@ -184,11 +188,12 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (isInputLocked)
 		{
-			// 入力をすべて無効化
 			moveInput = Vector2.zero;
 			ascend = false;
 			descend = false;
 			dropItem = false;
+			turnLeft = false;
+			turnRight = false;
 			return;
 		}
 
@@ -196,7 +201,14 @@ public class PlayerManager : MonoBehaviour
 		ascend = controller.Ascend;
 		descend = controller.Descend;
 		dropItem = controller.DropItem;
+
+		turnLeft = controller.TurnLeft;
+		turnRight = controller.TurnRight;
+
+		//Debug.Log($"TurnL:{turnLeft} TurnR:{turnRight}");
+
 	}
+
 
 
 
@@ -277,41 +289,90 @@ public class PlayerManager : MonoBehaviour
 			rb.rotation = Quaternion.Slerp(rb.rotation, targetRot, 0.1f);
 		}*/
 
+	/*	private void ApplyRotationPhysics()
+		{
+			// 着地中は処理しない
+			if (birdState == BirdState.Landing)
+			{
+				rb.rotation = Quaternion.Slerp(
+					rb.rotation,
+					Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0),
+					0.1f
+				);
+				return;
+			}
+
+			// 追加：左右入力で Yaw 回転（旋回）
+			float yaw = moveInput.x * rotationSpeed * Time.deltaTime;
+			rb.rotation = Quaternion.Euler(
+				rb.rotation.eulerAngles.x,
+				rb.rotation.eulerAngles.y + yaw,
+				rb.rotation.eulerAngles.z
+			);
+
+			// 上下方向(ピッチ)
+			float pitch = ascend ? 20f : descend ? -30f : 0f;
+			float roll = -moveInput.x * 25f;  // ロールは今の仕様を利用
+
+			Quaternion targetRot = Quaternion.Euler(pitch, rb.rotation.eulerAngles.y, roll);
+
+			rb.rotation = Quaternion.Slerp(rb.rotation, targetRot, 0.1f);
+		}*/
+
 	private void ApplyRotationPhysics()
 	{
-		// 着地中は処理しない
-		if (birdState == BirdState.Landing)
+		if (birdState == BirdState.Landing) return;
+
+		float yawInput = 0f;
+
+		// ===== デバイス判定 =====
+		bool isGamepad = Gamepad.current != null;
+
+		if (isGamepad)
 		{
-			rb.rotation = Quaternion.Slerp(
-				rb.rotation,
-				Quaternion.Euler(0, rb.rotation.eulerAngles.y, 0),
-				0.1f
-			);
-			return;
+			// ===== ゲームパッド =====
+
+			// 肩ボタン旋回（優先）
+			if (turnLeft) yawInput -= 1f;
+			if (turnRight) yawInput += 1f;
+
+			// 肩が押されてない時だけスティック
+			if (Mathf.Approximately(yawInput, 0f))
+			{
+				yawInput = moveInput.x;
+
+				// デッドゾーン
+				if (Mathf.Abs(yawInput) < 0.15f)
+					yawInput = 0f;
+			}
+		}
+		else
+		{
+			// ===== キーボード・マウス =====
+			yawInput = moveInput.x;
 		}
 
-		// 追加：左右入力で Yaw 回転（旋回）
-		float yaw = moveInput.x * rotationSpeed * Time.deltaTime;
-		rb.rotation = Quaternion.Euler(
-			rb.rotation.eulerAngles.x,
-			rb.rotation.eulerAngles.y + yaw,
-			rb.rotation.eulerAngles.z
-		);
+		float yaw = yawInput * rotationSpeed * Time.deltaTime;
 
-		// 上下方向(ピッチ)
 		float pitch = ascend ? 20f : descend ? -30f : 0f;
-		float roll = -moveInput.x * 25f;  // ロールは今の仕様を利用
+		float roll = -yawInput * 25f;
 
-		Quaternion targetRot = Quaternion.Euler(pitch, rb.rotation.eulerAngles.y, roll);
+		Quaternion targetRot = Quaternion.Euler(
+			pitch,
+			rb.rotation.eulerAngles.y + yaw,
+			roll
+		);
 
 		rb.rotation = Quaternion.Slerp(rb.rotation, targetRot, 0.1f);
 	}
 
 
-	/// <summary>
-	/// Debug
-	/// </summary>
-	private void HandleDebugMove()
+
+
+/// <summary>
+/// Debug
+/// </summary>
+private void HandleDebugMove()
 	{
 		// 移動
 		Vector3 move = new Vector3(moveInput.x, 0, moveInput.y) * moveSpeed;

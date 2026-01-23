@@ -152,6 +152,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""d38e8d60-bff0-467f-a0ae-581e456d7212"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8f100a4-17f3-4f81-8804-e8c056bfaa91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -444,21 +462,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""daba33a1-ad0c-4742-a909-43ad1cdfbeb6"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Ascend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""603f3daf-40bd-4854-8724-93e8017f59e3"",
-                    ""path"": ""<XRController>/secondaryButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
                     ""action"": ""Ascend"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -541,37 +548,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""66a317b1-316b-4ae7-853e-a74f4985962b"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""49a7bb82-67f2-4037-8b0c-90d5bd74a40e"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Descend"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""b85f5c93-5839-40ba-8873-e30007510ece"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Descend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""d09ff996-0b61-4c12-896b-c02b91e18918"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Descend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -631,7 +616,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""150aee13-ebab-4fb8-bab6-489f6b88853b"",
-                    ""path"": ""Esc"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -647,6 +632,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CameraRotata"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ac8c422-537a-40a6-b4c7-4b3701bf2d9a"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RightTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8512f5f7-81f6-4f71-a64a-51ce78d726c4"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""LeftTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1248,6 +1255,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Gameplay_DropItem = m_Gameplay.FindAction("DropItem", throwIfNotFound: true);
         m_Gameplay_Esc = m_Gameplay.FindAction("Esc", throwIfNotFound: true);
         m_Gameplay_CameraRotata = m_Gameplay.FindAction("CameraRotata", throwIfNotFound: true);
+        m_Gameplay_RightTurn = m_Gameplay.FindAction("RightTurn", throwIfNotFound: true);
+        m_Gameplay_LeftTurn = m_Gameplay.FindAction("LeftTurn", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1335,6 +1344,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_DropItem;
     private readonly InputAction m_Gameplay_Esc;
     private readonly InputAction m_Gameplay_CameraRotata;
+    private readonly InputAction m_Gameplay_RightTurn;
+    private readonly InputAction m_Gameplay_LeftTurn;
     public struct GameplayActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1353,6 +1364,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @DropItem => m_Wrapper.m_Gameplay_DropItem;
         public InputAction @Esc => m_Wrapper.m_Gameplay_Esc;
         public InputAction @CameraRotata => m_Wrapper.m_Gameplay_CameraRotata;
+        public InputAction @RightTurn => m_Wrapper.m_Gameplay_RightTurn;
+        public InputAction @LeftTurn => m_Wrapper.m_Gameplay_LeftTurn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1404,6 +1417,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraRotata.started += instance.OnCameraRotata;
             @CameraRotata.performed += instance.OnCameraRotata;
             @CameraRotata.canceled += instance.OnCameraRotata;
+            @RightTurn.started += instance.OnRightTurn;
+            @RightTurn.performed += instance.OnRightTurn;
+            @RightTurn.canceled += instance.OnRightTurn;
+            @LeftTurn.started += instance.OnLeftTurn;
+            @LeftTurn.performed += instance.OnLeftTurn;
+            @LeftTurn.canceled += instance.OnLeftTurn;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1450,6 +1469,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CameraRotata.started -= instance.OnCameraRotata;
             @CameraRotata.performed -= instance.OnCameraRotata;
             @CameraRotata.canceled -= instance.OnCameraRotata;
+            @RightTurn.started -= instance.OnRightTurn;
+            @RightTurn.performed -= instance.OnRightTurn;
+            @RightTurn.canceled -= instance.OnRightTurn;
+            @LeftTurn.started -= instance.OnLeftTurn;
+            @LeftTurn.performed -= instance.OnLeftTurn;
+            @LeftTurn.canceled -= instance.OnLeftTurn;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1646,6 +1671,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
         void OnCameraRotata(InputAction.CallbackContext context);
+        void OnRightTurn(InputAction.CallbackContext context);
+        void OnLeftTurn(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

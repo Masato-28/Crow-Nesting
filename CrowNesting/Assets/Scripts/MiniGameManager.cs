@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 
+public enum MiniGameResult
+{
+	Failed,
+	Clear,
+	Perfect
+}
+
 public class MiniGameManager : MonoBehaviour
 {
 	public static MiniGameManager Instance;
 
-	[SerializeField] int totalRingCount;   // リング総数
+	[Header("Ring Settings")]
+	[SerializeField] private int totalRingCount = 5;   // 全リング数
+	[SerializeField] private int clearRingCount = 3;   // 最低通過数
+
 	private int passedRingCount;
-	private bool gameStarted;
+	private bool isPlaying;
 
 	private void Awake()
 	{
@@ -15,27 +25,48 @@ public class MiniGameManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		gameStarted = true;
+		isPlaying = true;
 		passedRingCount = 0;
-		Debug.Log("ミニゲーム開始！");
 	}
 
 	public void PassRing()
 	{
-		if (!gameStarted) return;
-
+		if (!isPlaying) return;
 		passedRingCount++;
-		Debug.Log($"リング通過 {passedRingCount}/{totalRingCount}");
 	}
 
-	public bool CanGoal()
+	public MiniGameResult CheckResult()
 	{
-		return gameStarted && passedRingCount >= totalRingCount;
+		if (passedRingCount >= totalRingCount)
+			return MiniGameResult.Perfect;
+
+		if (passedRingCount >= clearRingCount)
+			return MiniGameResult.Clear;
+
+		return MiniGameResult.Failed;
 	}
 
 	public void Goal()
 	{
-		Debug.Log("🎉 ミニゲーム成功！");
-		gameStarted = false;
+		if (!isPlaying) return;
+
+		MiniGameResult result = CheckResult();
+
+		switch (result)
+		{
+			case MiniGameResult.Perfect:
+				Debug.Log("🌟 PERFECT!");
+				break;
+
+			case MiniGameResult.Clear:
+				Debug.Log("✅ CLEAR");
+				break;
+
+			case MiniGameResult.Failed:
+				Debug.Log("❌ FAILED");
+				break;
+		}
+
+		isPlaying = false;
 	}
 }

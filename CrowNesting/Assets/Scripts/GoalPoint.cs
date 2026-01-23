@@ -6,13 +6,7 @@ public class GoalPoint : MonoBehaviour
 	{
 		if (!other.CompareTag("Player")) return;
 
-		if (MiniGameManager.Instance.CanGoal())
-		{
-			MiniGameManager.Instance.Goal();
-		}
-		else
-		{
-			Debug.Log("‚Ü‚¾ƒŠƒ“ƒO‚ª‘«‚è‚È‚¢I");
-		}
+		MiniGameManager.Instance.Goal();
 	}
+
 }

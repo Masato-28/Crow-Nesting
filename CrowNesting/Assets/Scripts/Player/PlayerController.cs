@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 	public bool Ascend { get; private set; }
 	public bool Descend { get; private set; }
 	public bool DropItem { get; private set; }
+	public bool TurnLeft { get; private set; }
+	public bool TurnRight { get; private set; }
+
 
 	private InputSystem_Actions.GameplayActions gameplay;
 
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
 		Ascend = gameplay.Ascend.IsPressed();
 		Descend = gameplay.Descend.IsPressed();
 		DropItem = gameplay.DropItem.IsPressed();
-
+		TurnLeft = gameplay.LeftTurn.IsPressed();
+		TurnRight = gameplay.RightTurn.IsPressed();
 	}
 }

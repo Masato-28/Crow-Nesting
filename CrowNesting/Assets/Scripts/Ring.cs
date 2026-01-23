@@ -12,8 +12,6 @@ public class Ring : MonoBehaviour
 		{
 			passed = true;
 			MiniGameManager.Instance.PassRing();
-
-			// Œ©‚½–Ú‚ğÁ‚·‚È‚Ç
 			gameObject.SetActive(false);
 		}
 	}
