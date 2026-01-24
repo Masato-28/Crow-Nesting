@@ -7,18 +7,17 @@ public class GameManager : MonoBehaviour
 	[Header("Input Actions")]
 	[SerializeField] private InputActionReference escAction;
 
-	[SerializeField] private Light light;
+	[SerializeField] public Light sceneLight;
 
-		
 
 
 	private bool isGameClear;
 
 	private void Awake()
 	{
-		if (light != null)
+		if (sceneLight != null)
 		{
-			light.color = Color.white;
+			sceneLight.color = Color.white;
 		}
 	}
 

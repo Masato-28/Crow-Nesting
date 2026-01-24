@@ -430,10 +430,10 @@ private void HandleDebugMove()
 	/// <param name="idle">Debug用</param>
 	void SetAnimState(bool ascend, bool descend, bool landing, bool idle = false)
 	{
-		anim.SetBool("IsAscending", ascend);
-		anim.SetBool("IsDescending", descend);
-		anim.SetBool("IsLanding", landing);
-		anim.SetBool("IsIdle", idle);
+		//anim.SetBool("IsAscending", ascend);
+		//anim.SetBool("IsDescending", descend);
+		//anim.SetBool("IsLanding", landing);
+		//anim.SetBool("IsIdle", idle);
 	}
 	#endregion
 

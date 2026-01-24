@@ -170,6 +170,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CamTurn"",
+                    ""type"": ""Button"",
+                    ""id"": ""af545a3c-1914-4aa3-a63e-153e61cf2ed7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -626,6 +635,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9c7701fb-0d90-4268-9318-3bcc2c236b69"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Esc"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4d95e902-2fc9-4e82-9d68-556886f59b5a"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -654,6 +674,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""LeftTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dd4a24c-8808-4624-9b92-7881d6ae1d34"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CamTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cafc409-6abe-47d2-a6eb-81da7d24ca53"",
+                    ""path"": ""<Keyboard>/#(0)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CamTurn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1257,6 +1299,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Gameplay_CameraRotata = m_Gameplay.FindAction("CameraRotata", throwIfNotFound: true);
         m_Gameplay_RightTurn = m_Gameplay.FindAction("RightTurn", throwIfNotFound: true);
         m_Gameplay_LeftTurn = m_Gameplay.FindAction("LeftTurn", throwIfNotFound: true);
+        m_Gameplay_CamTurn = m_Gameplay.FindAction("CamTurn", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1346,6 +1389,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CameraRotata;
     private readonly InputAction m_Gameplay_RightTurn;
     private readonly InputAction m_Gameplay_LeftTurn;
+    private readonly InputAction m_Gameplay_CamTurn;
     public struct GameplayActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1366,6 +1410,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @CameraRotata => m_Wrapper.m_Gameplay_CameraRotata;
         public InputAction @RightTurn => m_Wrapper.m_Gameplay_RightTurn;
         public InputAction @LeftTurn => m_Wrapper.m_Gameplay_LeftTurn;
+        public InputAction @CamTurn => m_Wrapper.m_Gameplay_CamTurn;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1423,6 +1468,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LeftTurn.started += instance.OnLeftTurn;
             @LeftTurn.performed += instance.OnLeftTurn;
             @LeftTurn.canceled += instance.OnLeftTurn;
+            @CamTurn.started += instance.OnCamTurn;
+            @CamTurn.performed += instance.OnCamTurn;
+            @CamTurn.canceled += instance.OnCamTurn;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1475,6 +1523,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LeftTurn.started -= instance.OnLeftTurn;
             @LeftTurn.performed -= instance.OnLeftTurn;
             @LeftTurn.canceled -= instance.OnLeftTurn;
+            @CamTurn.started -= instance.OnCamTurn;
+            @CamTurn.performed -= instance.OnCamTurn;
+            @CamTurn.canceled -= instance.OnCamTurn;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1673,6 +1724,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnCameraRotata(InputAction.CallbackContext context);
         void OnRightTurn(InputAction.CallbackContext context);
         void OnLeftTurn(InputAction.CallbackContext context);
+        void OnCamTurn(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

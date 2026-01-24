@@ -9,14 +9,13 @@ public class PlayerController : MonoBehaviour
 	public bool TurnLeft { get; private set; }
 	public bool TurnRight { get; private set; }
 
-
 	private InputSystem_Actions.GameplayActions gameplay;
 
 	private void Awake()
 	{
 		if (InputManager.Instance == null)
 		{
-			Debug.LogError("InputManager がシーンに存在しません");
+			//Debug.LogError("InputManager がシーンに存在しません");
 			enabled = false;
 			return;
 		}

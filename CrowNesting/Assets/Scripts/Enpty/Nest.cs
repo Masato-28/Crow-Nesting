@@ -52,6 +52,21 @@ public class Nest : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// 追加
+	/// アイテム個数取得
+	/// </summary>
+	/// <param name="cotton">綿</param>
+	/// <param name="wire">Hangar？</param>
+	/// <param name="branch">枝</param>
+	public void GetItemInfo(int cotton, int wire, int branch)
+	{
+		currentCotton = cotton;
+		currentWire = wire;
+		currentBranch = branch;
+	}
+
+
 	void GameClear()
 	{
 		Debug.Log("ゲームクリア！");

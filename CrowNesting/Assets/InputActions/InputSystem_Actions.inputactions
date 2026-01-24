@@ -148,6 +148,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CamTurn",
+                    "type": "Button",
+                    "id": "af545a3c-1914-4aa3-a63e-153e61cf2ed7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -604,6 +613,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9c7701fb-0d90-4268-9318-3bcc2c236b69",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Esc",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4d95e902-2fc9-4e82-9d68-556886f59b5a",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -632,6 +652,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "LeftTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dd4a24c-8808-4624-9b92-7881d6ae1d34",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CamTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6cafc409-6abe-47d2-a6eb-81da7d24ca53",
+                    "path": "<Keyboard>/#(0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CamTurn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

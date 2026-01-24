@@ -25,7 +25,7 @@ public class ItemSpawnPoint : MonoBehaviour
 			Quaternion.identity
 		);
 
-		//Debug.Log($"Spawned : {spawned.name} (Point:{name}, Type:{itemType})");
+		Debug.Log($"Spawned : {spawned.name} (Point:{name}, Type:{itemType})");
 
 		used = true;
 	}
