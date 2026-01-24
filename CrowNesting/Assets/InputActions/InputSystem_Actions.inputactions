@@ -157,6 +157,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KillPhysics",
+                    "type": "Button",
+                    "id": "8bbf3357-aa1c-4f8d-9eb1-18a6db92cea2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -674,6 +683,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CamTurn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6d5d217-19ea-478e-bad7-94df100339fe",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "KillPhysics",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

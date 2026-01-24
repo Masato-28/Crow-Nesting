@@ -93,10 +93,15 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private bool isStone;	// 石を持っているか.
 	[SerializeField] private bool isBorn;   // 骨を持っているか.
 
+	private Nest nest;
+
 	[SerializeField] private float miniGameInputLockTime = 2f;
 	private bool isInputLocked = false;
 
 	[SerializeField] private bool isgame;
+
+	[SerializeField] private Nest nestObj;
+
 
 	#endregion
 
@@ -634,6 +639,15 @@ private void HandleDebugMove()
 		isInputLocked = false;
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
+	public void ItemReset()
+	{
+		cotton.current = 0;
+		hangar.current = 0;
+		branches.current = 0;	
+	}
 
 	// 関数終わり
 	#endregion
@@ -700,6 +714,10 @@ private void HandleDebugMove()
 			isStone = true;
 			Debug.Log("Get:石");
 			Destroy(other.gameObject);
+		}
+		else if (other.CompareTag("Nest"))
+		{
+			nestObj.GetItemInfo(cotton.current, hangar.current, branches.current);
 		}
 	}
 	#endregion

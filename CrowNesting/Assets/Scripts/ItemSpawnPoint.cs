@@ -36,16 +36,17 @@ public enum ItemType
 {
 	Branch,
 	Stone,
-	Fruit,
-	Feather,
-	Rare,
+	//Fruit,
+	//Feather,
+	//Rare,
 	
 	Hanger,
 	Cotton,
-	Branches,
-	SmollStone,
-	harigane,
-	wata,
-	eda,
-	Nest
+	//Branches,
+	//SmollStone,
+	//harigane,
+	//wata,
+	//eda,
+	//Nest,
+	Meat
 }

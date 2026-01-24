@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6341919834181069045}
   - component: {fileID: 1643753324788077899}
   m_Layer: 0
-  m_Name: Smallstone
+  m_Name: Stone
   m_TagString: SmollStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Terrain;
+using UnityEngine.UI;
 
 public class Nest : MonoBehaviour
 {
@@ -13,10 +13,27 @@ public class Nest : MonoBehaviour
 	private int currentWire;
 	private int currentBranch;
 
-	public UIManager uiManager;
+	[Header("達成度スライダー")]
+	[SerializeField] private Slider cottonSlider;
+	[SerializeField] private Slider wireSlider;
+	[SerializeField] private Slider branchSlider;
+
+	[SerializeField] private PlayerManager playerManager;
 
 	[Header("クリア画面シーン名")]
 	public string clearSceneName = "ClearScene";
+
+	void Start()
+	{
+		// Slider初期設定
+		cottonSlider.maxValue = needCotton;
+		wireSlider.maxValue = needWire;
+		branchSlider.maxValue = needBranch;
+
+		cottonSlider.value = 0;
+		wireSlider.value = 0;
+		branchSlider.value = 0;
+	}
 
 	public void AddMaterial(MaterialType type)
 	{
@@ -33,14 +50,36 @@ public class Nest : MonoBehaviour
 				break;
 		}
 
-		uiManager.UpdateUI(
-			needCotton - currentCotton,
-			needWire - currentWire,
-			needBranch - currentBranch
-		);
-
+		UpdateSliders();
 		CheckClear();
 	}
+
+	void UpdateSliders()
+	{
+		cottonSlider.value = currentCotton;
+		wireSlider.value = currentWire;
+		branchSlider.value = currentBranch;
+
+		// 達成したら色変更
+		if (currentCotton >= needCotton)
+		{
+			cottonSlider.fillRect.GetComponent<Image>().color = Color.yellow;
+			CheckClear();
+		}
+
+		if (currentWire >= needWire)
+		{
+			wireSlider.fillRect.GetComponent<Image>().color = Color.yellow;
+			CheckClear();
+		}
+
+		if (currentBranch >= needBranch)
+		{
+			branchSlider.fillRect.GetComponent<Image>().color = Color.yellow;
+			CheckClear();
+		}
+	}
+
 
 	void CheckClear()
 	{
@@ -53,19 +92,17 @@ public class Nest : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 追加
-	/// アイテム個数取得
+	/// アイテム個数直接セット（ロード・引き継ぎ用）
 	/// </summary>
-	/// <param name="cotton">綿</param>
-	/// <param name="wire">Hangar？</param>
-	/// <param name="branch">枝</param>
 	public void GetItemInfo(int cotton, int wire, int branch)
 	{
 		currentCotton = cotton;
 		currentWire = wire;
 		currentBranch = branch;
-	}
 
+		UpdateSliders();
+		playerManager.ItemReset();
+	}
 
 	void GameClear()
 	{
@@ -73,4 +110,3 @@ public class Nest : MonoBehaviour
 		SceneManager.LoadScene(clearSceneName);
 	}
 }
-

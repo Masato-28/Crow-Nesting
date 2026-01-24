@@ -179,6 +179,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KillPhysics"",
+                    ""type"": ""Button"",
+                    ""id"": ""8bbf3357-aa1c-4f8d-9eb1-18a6db92cea2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -696,6 +705,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CamTurn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6d5d217-19ea-478e-bad7-94df100339fe"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""KillPhysics"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1300,6 +1320,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Gameplay_RightTurn = m_Gameplay.FindAction("RightTurn", throwIfNotFound: true);
         m_Gameplay_LeftTurn = m_Gameplay.FindAction("LeftTurn", throwIfNotFound: true);
         m_Gameplay_CamTurn = m_Gameplay.FindAction("CamTurn", throwIfNotFound: true);
+        m_Gameplay_KillPhysics = m_Gameplay.FindAction("KillPhysics", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1390,6 +1411,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_RightTurn;
     private readonly InputAction m_Gameplay_LeftTurn;
     private readonly InputAction m_Gameplay_CamTurn;
+    private readonly InputAction m_Gameplay_KillPhysics;
     public struct GameplayActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1411,6 +1433,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @RightTurn => m_Wrapper.m_Gameplay_RightTurn;
         public InputAction @LeftTurn => m_Wrapper.m_Gameplay_LeftTurn;
         public InputAction @CamTurn => m_Wrapper.m_Gameplay_CamTurn;
+        public InputAction @KillPhysics => m_Wrapper.m_Gameplay_KillPhysics;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1471,6 +1494,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CamTurn.started += instance.OnCamTurn;
             @CamTurn.performed += instance.OnCamTurn;
             @CamTurn.canceled += instance.OnCamTurn;
+            @KillPhysics.started += instance.OnKillPhysics;
+            @KillPhysics.performed += instance.OnKillPhysics;
+            @KillPhysics.canceled += instance.OnKillPhysics;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1526,6 +1552,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @CamTurn.started -= instance.OnCamTurn;
             @CamTurn.performed -= instance.OnCamTurn;
             @CamTurn.canceled -= instance.OnCamTurn;
+            @KillPhysics.started -= instance.OnKillPhysics;
+            @KillPhysics.performed -= instance.OnKillPhysics;
+            @KillPhysics.canceled -= instance.OnKillPhysics;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1725,6 +1754,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnRightTurn(InputAction.CallbackContext context);
         void OnLeftTurn(InputAction.CallbackContext context);
         void OnCamTurn(InputAction.CallbackContext context);
+        void OnKillPhysics(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
