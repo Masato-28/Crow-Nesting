@@ -33,77 +33,119 @@ public class ItemData
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerManager : MonoBehaviour
 {
-	#region 変数宣言
+	#region ===== Components =====
 
 	private PlayerController controller;
 	private Rigidbody rb;
 	private Animator anim;
-	private Vector2 moveInput;  // 移動の入力値.
-	private MoveType lastMoveType;
+
+	#endregion
+
+
+	#region ===== Input =====
+
+	private Vector2 moveInput;     // 移動入力
 	private bool turnLeft;
 	private bool turnRight;
+	private bool ascend;           // 上昇入力
+	private bool descend;          // 下降入力
+	private bool dropItem;         // 石を落とす
+
+	#endregion
 
 
-	[SerializeField] private MoveType moveType = MoveType.Physics;          // 挙動管理.
-	[SerializeField] private BirdState birdState;                           // 行動状態.
+	#region ===== State =====
 
-	[SerializeField] private float ascendSpeed = 5f;        // 上昇スピード.
-	[SerializeField] private float verticalSpeed = 3.0f;    // 下降スピード. 
-	[SerializeField] private float rotationSpeed = 5f;      // 回転スピード.
-	[SerializeField] private float moveSpeed = 5.0f;        // 移動スピード. 
+	[Header("State")]
+	[SerializeField] private MoveType moveType = MoveType.Physics;
+	[SerializeField] private BirdState birdState;
+	private MoveType lastMoveType;
 
-	private int Life = 3; // 残基.
-	[SerializeField] private int correntLife; // 残基.
-
-	//[Header("Player")]
-	[SerializeField] Sprite[] LifeSprite;
-	[SerializeField] UnityEngine.UI.Image ImageLife;
+	#endregion
 
 
-	[SerializeField] private GameObject SmollStonePrefab;
+	#region ===== Movement Settings =====
+
+	[Header("Movement Settijngs")]
+	[SerializeField] private float moveSpeed = 5.0f;
+	[SerializeField] private float rotationSpeed = 5f;
+	[SerializeField] private float ascendSpeed = 5f;
+	[SerializeField] private float verticalSpeed = 3.0f;
+
+	#endregion
 
 
+	#region ===== Life / Status =====
 
-	[SerializeField] Transform miniGame_startPoint;
+	[Header("Life/State")]
+	[SerializeField] private int correntLife;
+	private int Life = 3;
 
-	[Header("UI")]
-	[SerializeField] private GameObject IconStone;
-	[SerializeField] private GameObject IconBorn;
+	[SerializeField] private Sprite[] lifeSprites;
+	[SerializeField] private UnityEngine.UI.Image imageLife;
 
-	[SerializeField] private Text HangerText;
-	[SerializeField] private Text BranchesText;
-	[SerializeField] private Text CottonText;
-
-	[SerializeField] private GameObject PlayerMiniMapPoint;
+	#endregion
 
 
-	[Header("DebugLog")]
-	[SerializeField] private bool IsBirdState;
-	[SerializeField] private bool IsCheckAnimations;
+	#region ===== Item Data =====
 
-
-	private bool ascend;        // 上昇入力.
-	private bool descend;       // 下降入力.F
-	private bool dropItem;     // 石を落とす.
-
-	[Header("Item")]
+	[Header("Item Data")]
 	[SerializeField] private ItemData branches = new ItemData();
 	[SerializeField] private ItemData hangar = new ItemData();
 	[SerializeField] private ItemData cotton = new ItemData();
-	[SerializeField] private bool isStone;	// 石を持っているか.
-	[SerializeField] private bool isBorn;   // 骨を持っているか.
 
-	private Nest nest;
+	[SerializeField] private bool isStone;   // 石を持っているか
+	[SerializeField] private bool isBorn;    // 骨を持っているか
 
-	[SerializeField] private float miniGameInputLockTime = 2f;
-	private bool isInputLocked = false;
-
-	[SerializeField] private bool isgame;
-
-	[SerializeField] private Nest nestObj;
-
+	[SerializeField] private GameObject smollStonePrefab;
 
 	#endregion
+
+
+	#region ===== Nest =====
+
+	[Header("Nest")]
+	[SerializeField] private Nest nestObj;
+	private Nest nest;
+
+	#endregion
+
+
+	#region ===== MiniGame =====
+
+	[Header("MiniGame")]
+	[SerializeField] private Transform miniGameStartPoint;
+	[SerializeField] private float miniGameInputLockTime = 2f;
+
+	[SerializeField] private bool isGame;
+	private bool isInputLocked = false;
+
+	#endregion
+
+
+	#region ===== UI =====
+
+	[Header("UI")]
+	[SerializeField] private GameObject iconStone;
+	[SerializeField] private GameObject iconBorn;
+
+	[SerializeField] private Text hangerText;
+	[SerializeField] private Text branchesText;
+	[SerializeField] private Text cottonText;
+
+	[SerializeField] private GameObject playerMiniMapPoint;
+
+	#endregion
+
+
+	#region ===== Debug =====
+
+	[Header("Debug")]
+	[SerializeField] private bool isBirdState;
+	[SerializeField] private bool isCheckAnimations;
+
+	#endregion
+
 
 	#region 初期処理
 	private void Awake()
@@ -172,7 +214,7 @@ public class PlayerManager : MonoBehaviour
 		// UIの更新.
 		UpdateUI();
 
-		if (isgame)
+		if (isGame)
 		{
 			MiniGameStart();
 		}
@@ -400,30 +442,30 @@ private void HandleDebugMove()
 		{
 			case BirdState.Ascending:   // 上昇.
 				SetAnimState(true, false, false);
-				if (IsBirdState) Debug.Log("birdState : Ascending");
+				if (isBirdState) Debug.Log("birdState : Ascending");
 				break;
 
 			case BirdState.Descending:  // 下降.
 				SetAnimState(false, true, false);
-				if (IsBirdState) Debug.Log("birdState : Descending");
+				if (isBirdState) Debug.Log("birdState : Descending");
 				break;
 
 			case BirdState.Landing: // 着地中.
 				SetAnimState(false, false, true);
-				if (IsBirdState) Debug.Log("birdState : Landing");
+				if (isBirdState) Debug.Log("birdState : Landing");
 				break;
 
 			case BirdState.Flying:    // 滑空.
 				SetAnimState(false, false, false);
-				if (IsBirdState) Debug.Log("birdState : Flying");
+				if (isBirdState) Debug.Log("birdState : Flying");
 				break;
 
 			case BirdState.Idle:    // Debug用.
 				SetAnimState(false, false, false, true);
-				if (IsBirdState) Debug.Log("birdState : Debug");
+				if (isBirdState) Debug.Log("birdState : Debug");
 				break;
 		}
-		if (IsCheckAnimations) Debug.Log("PlayerAnimations : " + birdState);
+		if (isCheckAnimations) Debug.Log("PlayerAnimations : " + birdState);
 	}
 
 	/// <summary>
@@ -520,17 +562,17 @@ private void HandleDebugMove()
 	private void UpdateUI()
 	{
 		// 残機UI
-		int index = Mathf.Clamp(correntLife, 0, LifeSprite.Length - 1);
-		ImageLife.sprite = LifeSprite[index];
+		int index = Mathf.Clamp(correntLife, 0, lifeSprites.Length - 1);
+		imageLife.sprite = lifeSprites[index];
 
 		SetStoneIcon();
 		SetBornIcon();
 		SetPoint();
 
 		// ===== アイテム数表示 =====
-		BranchesText.text = $"{branches.current}"/* / {branches.required}"*/;
-		HangerText.text = $"{hangar.current}"/* / {hangar.required}"*/;
-		CottonText.text = $"{cotton.current}"/*/ {cotton.required}"*/;
+		branchesText.text = $"{branches.current}"/* / {branches.required}"*/;
+		hangerText.text = $"{hangar.current}"/* / {hangar.required}"*/;
+		cottonText.text = $"{cotton.current}"/*/ {cotton.required}"*/;
 	}
 
 
@@ -541,7 +583,7 @@ private void HandleDebugMove()
 			if (isStone == true)    // 石を持っていたら.
 			{
 				// 石を生成する.生成したのと当たって取得判定にさせないためにofesetあり.
-				Instantiate(SmollStonePrefab, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), Quaternion.identity);
+				Instantiate(smollStonePrefab, new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), Quaternion.identity);
 				Debug.Log("DropStone");
 				isStone = false;    // 石を持っていない状態にする.
 			}
@@ -606,22 +648,22 @@ private void HandleDebugMove()
 
 	public void SetStoneIcon()
 	{
-		IconStone.SetActive(isStone);
+		iconStone.SetActive(isStone);
 	}
 	
 	public void SetBornIcon()
 	{
-		IconBorn.SetActive(isBorn);
+		iconBorn.SetActive(isBorn);
 	}
 
 	private void SetPoint()
 	{
-		PlayerMiniMapPoint.transform.position = transform.position;
+		playerMiniMapPoint.transform.position = transform.position;
 	}
 
 	public void MiniGameStart()
 	{
-		transform.position = miniGame_startPoint.position;
+		transform.position = miniGameStartPoint.position;
 
 		// 物理リセット（ワープ時の事故防止）
 		rb.velocity = Vector3.zero;

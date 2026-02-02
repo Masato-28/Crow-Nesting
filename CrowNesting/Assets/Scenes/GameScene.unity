@@ -32415,7 +32415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1214744801
@@ -82289,27 +82289,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: 0
   birdState: 0
+  moveSpeed: 5
+  rotationSpeed: 1000
   ascendSpeed: 5
   verticalSpeed: 3.05
-  rotationSpeed: 1000
-  moveSpeed: 5
   correntLife: 0
-  LifeSprite:
-  - {fileID: 21300000, guid: c9452fe5b3c136943bf6d62d7e0899c3, type: 3}
-  - {fileID: 21300000, guid: 064b326c03bdc1d42a1a0bc3e7681388, type: 3}
-  - {fileID: 21300000, guid: 59f288c907350e8478e5b9d77e95f201, type: 3}
-  - {fileID: 21300000, guid: 25c632853c9693841ad096829fc9d147, type: 3}
-  ImageLife: {fileID: 8028348130734037124}
-  SmollStonePrefab: {fileID: 7181203966836898599, guid: 96116868dfbed154086a5a61c97e3270, type: 3}
-  miniGame_startPoint: {fileID: 2405459733757334018}
-  IconStone: {fileID: 6658632049370462037}
-  IconBorn: {fileID: 6065023551379781119}
-  HangerText: {fileID: 1737287063}
-  BranchesText: {fileID: 2063073999}
-  CottonText: {fileID: 1914864526}
-  PlayerMiniMapPoint: {fileID: 1190549115}
-  IsBirdState: 0
-  IsCheckAnimations: 0
+  lifeSprites: []
+  imageLife: {fileID: 0}
   branches:
     current: 82
     required: 0
@@ -82321,9 +82307,19 @@ MonoBehaviour:
     required: 0
   isStone: 0
   isBorn: 0
-  miniGameInputLockTime: 2
-  isgame: 0
+  smollStonePrefab: {fileID: 0}
   nestObj: {fileID: 0}
+  miniGameStartPoint: {fileID: 0}
+  miniGameInputLockTime: 2
+  isGame: 0
+  iconStone: {fileID: 0}
+  iconBorn: {fileID: 0}
+  hangerText: {fileID: 0}
+  branchesText: {fileID: 0}
+  cottonText: {fileID: 0}
+  playerMiniMapPoint: {fileID: 0}
+  isBirdState: 0
+  isCheckAnimations: 0
 --- !u!54 &4545121977653103759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99937,29 +99933,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: 0
   birdState: 0
+  moveSpeed: 5
+  rotationSpeed: 1000
   ascendSpeed: 5
   verticalSpeed: 3
-  rotationSpeed: 1000
-  moveSpeed: 5
   correntLife: 0
-  LifeSprite:
-  - {fileID: 21300000, guid: c9452fe5b3c136943bf6d62d7e0899c3, type: 3}
-  - {fileID: 21300000, guid: 064b326c03bdc1d42a1a0bc3e7681388, type: 3}
-  - {fileID: 21300000, guid: 59f288c907350e8478e5b9d77e95f201, type: 3}
-  - {fileID: 21300000, guid: 25c632853c9693841ad096829fc9d147, type: 3}
-  ImageLife: {fileID: 8028348130734037124}
-  SmollStonePrefab: {fileID: 7181203966836898599, guid: 96116868dfbed154086a5a61c97e3270, type: 3}
-  miniGame_startPoint: {fileID: 2405459733757334018}
-  IconStone: {fileID: 6658632049370462037}
-  IconBorn: {fileID: 6065023551379781119}
-  HangerText: {fileID: 1737287063}
-  BranchesText: {fileID: 2063073999}
-  CottonText: {fileID: 1914864526}
-  PlayerMiniMapPoint: {fileID: 1190549115}
-  IsBirdState: 0
-  IsCheckAnimations: 0
+  lifeSprites: []
+  imageLife: {fileID: 0}
   branches:
-    current: 82
+    current: 0
     required: 0
   hangar:
     current: 0
@@ -99969,9 +99951,19 @@ MonoBehaviour:
     required: 0
   isStone: 0
   isBorn: 0
-  miniGameInputLockTime: 2
-  isgame: 0
+  smollStonePrefab: {fileID: 0}
   nestObj: {fileID: 4570449064453116795}
+  miniGameStartPoint: {fileID: 0}
+  miniGameInputLockTime: 2
+  isGame: 0
+  iconStone: {fileID: 0}
+  iconBorn: {fileID: 0}
+  hangerText: {fileID: 0}
+  branchesText: {fileID: 0}
+  cottonText: {fileID: 0}
+  playerMiniMapPoint: {fileID: 0}
+  isBirdState: 0
+  isCheckAnimations: 0
 --- !u!1 &8026802386333048725
 GameObject:
   m_ObjectHideFlags: 0
